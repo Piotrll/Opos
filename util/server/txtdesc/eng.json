@@ -1,0 +1,19 @@
+{
+    "log_txt": {
+        "1": "Main initialized with arguments - {argList}",
+        "2": "Base directory set to: {abs_path}",
+        "3": "Starting diagnostics...",
+        "4": "Diagnostic OAScore: {OAScore}",
+        "5": "System health is excellent.",
+        "6": "System health is good.",
+        "7": "System health is fair. Consider maintenance.",
+        "8": "System health is poor. Immediate attention required.",
+        "9": "\u001b[91mCritical: System health is poor. Immediate attention required.\u001b[0m",
+        "10": "Error general utilities: {e}",
+        "11": "Utility initialization failed. Exiting.",
+        "12": "Diagnostics initialization failed. System health checks unavailable.",
+        "13": "All modules initialized successfully.",
+        "14": "Multiple module initializations failed, exiting.",
+        "15": "Diagnostic module failed to initialize {e}"
+    }
+}
