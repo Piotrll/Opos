@@ -75,6 +75,33 @@ class Diag:
             self.OAScore = 50  # default score if no data
         return self.OAScore
 
+    def runtime_diag(self, max_iterations=5, sleep_interval=1.0):
+        """Run diagnostics during runtime."""
+        samples = []
+        count = 0
+        while True:
+            # collect metrics
+            time.sleep(sleep_interval)  # pacing between samples
+            memory_info = psutil.virtual_memory()
+            drive_info = psutil.disk_usage(self.abs_path)
+            cpu_usage = psutil.cpu_percent(interval=0)
+
+            samples.append({
+                "CPU-inuse": cpu_usage,
+                "RAM-inuse": memory_info.percent,
+                "Disk-inuse": drive_info.percent,
+                "timestamp": time.time(),
+            })
+
+            count += 1
+
+            # post-condition check
+            if max_iterations is not None and count >= max_iterations:
+                break
+            # otherwise loop again 
+        self.last_samples = samples
+        return self.evaluate_samples(samples)
+
     def get_cpu_values(self, samples=None):
         """Return list of CPU-inuse values from given samples or last_samples."""
         src = samples if samples is not None else self.last_samples

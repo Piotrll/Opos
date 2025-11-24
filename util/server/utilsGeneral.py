@@ -21,7 +21,7 @@ class UtilsGeneral:
         return time.time() - self.start_time  
     
     def calculate_OAScore_validation(self, score: int):
-        """Validate OAScore and return status string."""
+        """Validate OAScore and log appropriate messages."""
         if score >= 90:
             self.logger.log_info(5, OAScore=score)
             return

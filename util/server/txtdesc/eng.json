@@ -1,4 +1,5 @@
 {
+    "_comment": "English language file for server txtdesc",
     "log_txt": {
         "1": "Main initialized with arguments - {argList}",
         "2": "Base directory set to: {abs_path}",
@@ -14,6 +15,11 @@
         "12": "Diagnostics initialization failed. System health checks unavailable.",
         "13": "All modules initialized successfully.",
         "14": "Multiple module initializations failed, exiting.",
-        "15": "Diagnostic module failed to initialize {e}"
+        "15": "Diagnostic module failed to initialize {e}",
+        "16": "Logger initialized successfully. Language set to: {lang}",
+        "17": "Starting runtime diagnostics...",
+        "18": "System uptime: {uphours} hours, {upminutes} minutes, {upseconds} seconds.",
+        "19": "Thread Manager failed to initialize: {e}",
+        "20": "Thread Manager failed to initialize. runtime checks unavailable."
     }
 }

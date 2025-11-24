@@ -7,3 +7,5 @@ server/tests/__pycache__/test_main-1.cpython-313-pytest-9.0.1.pyc
 util/server/__pycache__/argHandle.cpython-313.pyc
 util/server/__pycache__/logg.cpython-313.pyc
 util/server/__pycache__/utilsGeneral.cpython-313.pyc
+threads/server/__pycache__/diag_th.cpython-313.pyc
+threads/server/__pycache__/threadmg.cpython-313.pyc
