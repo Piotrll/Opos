@@ -36,7 +36,11 @@ class Main:
         print("Initializing Main...")
         if self.bootModules():
             print("Critical error during boot. Exiting.")
-            sys.exit(1)
+            try:
+                self.thread_manager.stop_all()
+            except Exception:
+                pass
+            sys.exit()
         #Exit condition TODO
         #Now runtime modules TODO
         #then check an report status TODO
@@ -59,7 +63,7 @@ class Main:
             self.logger.log_error(12)
         if threr != 0:
             self.logger.log_error(20)
-        if argr == 0 and logr == 0 and utilr == 0 and diagr == 0:
+        if argr == 0 and logr == 0 and utilr == 0 and diagr == 0 and threr == 0:
             self.logger.log_info(13)
         if argr+logr+utilr+diagr+threr > 1:
             self.logger.log_error(14)
@@ -113,14 +117,22 @@ class Main:
         return 0
         
     def threadInit(self):
+        
         try:
-            if self.argList.get("dint") is not None:
-                arg_interval = int(self.argList["dint"])
-            else:
-                arg_interval = 60  # default interval seconds
-            thread_manager = ThreadManager(self.diag, self.logger, self.utilG, arg_interval)    
-            thread_manager.essential_threds(interval=arg_interval)
+            arg_interval = 60 # default diagnostic interval
+            if not isinstance(self.argList.get("dint"), int) or self.argList["dint"] < 29:
+                try: #To not crash on invalid input
+                    arg_interval = int(self.argList["dint"]) # Use provided diagnostic interval
+                except Exception:
+                    self.logger.log_info(23, dint=str(self.argList.get("dint"))) # Log invalid dint value
+                    self.argList["dint"] = 60
+                 
+
+            self.thread_manager = ThreadManager(self.diag, self.logger, self.utilG, arg_interval)    
+            self.thread_manager.essential_threds(interval=arg_interval)
+            self.logger.log_info(21, threads=len(self.thread_manager.threads))
             return 0
+        
         except Exception as e:
             self.logger.log_error(19 , e=str(e))
             return 1

@@ -20,6 +20,9 @@
         "17": "Starting runtime diagnostics...",
         "18": "System uptime: {uphours} hours, {upminutes} minutes, {upseconds} seconds.",
         "19": "Thread Manager failed to initialize: {e}",
-        "20": "Thread Manager failed to initialize. runtime checks unavailable."
+        "20": "Thread Manager failed to initialize. runtime checks unavailable.",
+        "21": "Thread Manager initialized with {threads} threads.",
+        "22": "Runtime diagnostics unavailable.",
+        "23": "Diagnostic interval \"{dint}\" invalid - (should be above 30), using default of 60 seconds."
     }
 }

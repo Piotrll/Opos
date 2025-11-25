@@ -1,10 +1,13 @@
 import threading
-def runtime_diag_check(diagInstance, logginstance, utilGinstance, interval=60, stop_event: threading.Event = None):
+def runtime_diag_check(diagInstance, logginstance, utilGinstance, interval, stop_event):
     """Run runtime diagnostics and log the results. Stop when stop_event is set."""
-    if stop_event is not isinstance(stop_event, threading.Event):
-        stop_event = threading.Event()
+    if not isinstance(stop_event, threading.Event):
+        logginstance.log_info(22) # Invalid stop_event provided
+        return
 
     while not stop_event.is_set():
+        if stop_event.wait(interval): # wait but wake immediately if stop_event is set
+            break
         logginstance.log_info(17)
         OARuntime = diagInstance.runtime_diag(max_iterations=10, sleep_interval=1)
         upseconds = utilGinstance.calculate_uptime()
@@ -14,7 +17,5 @@ def runtime_diag_check(diagInstance, logginstance, utilGinstance, interval=60, s
         logginstance.log_info(4, OAScore=OARuntime)
         utilGinstance.calculate_OAScore_validation(OARuntime)
 
-        # wait but wake immediately if stop_event is set
-        if stop_event.wait(interval):
-            break
-    
+        
+        

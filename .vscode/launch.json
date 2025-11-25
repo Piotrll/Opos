@@ -7,18 +7,18 @@
   "configurations": [
     {
       "name": "Python: Debug server as module",
-      "type": "python",
+      "type": "debugpy",
       "request": "launch",
       "module": "server.main",
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",
       "justMyCode": true,
       "env": { "PYTHONPATH": "${workspaceFolder}" },
-      "args": ["-l", "eng"]
+      "args": ["-l", "eng", "-dint", "100"]
     },
     {
       "name": "Python: Debug current file",
-      "type": "python",
+      "type": "debugpy",
       "request": "launch",
       "program": "${file}",
       "cwd": "${workspaceFolder}",

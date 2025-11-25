@@ -1,6 +1,8 @@
 import threading
 from threads.server.diag_th import runtime_diag_check
-
+"""Thread index List on self.threads
+0 : runtime_diag_check
+"""
 class ThreadManager:
     def __init__(self, diag, logger, utilG, arg_interval):
         self.threads = []
